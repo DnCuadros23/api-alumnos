@@ -1,0 +1,22 @@
+org: denilsoncuadros
+service: api-alumnos
+
+provider:
+  name: aws
+  runtime: python3.12
+  timeout: 30  
+  iam:
+    role: arn:aws:iam::524953017897:role/LabRole
+
+functions:
+  listar:
+    handler: ListarAlumnos.lambda_handler
+    events:
+      - http:
+          path: /alumnos/listar
+          method: post
+          cors: true
+          integration: lambda
+
+
+
